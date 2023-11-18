@@ -38,7 +38,12 @@
                 scales: {
                     r: {
                         suggestedMin: 0,
-                        suggestedMax: 100
+                        suggestedMax: 100,
+                        pointLabels: {
+                            font: {
+                                size: 20
+                            }
+                        }
                     }
                 }
             }
@@ -58,9 +63,21 @@
         actuals = removeItem(actuals, index)
     };
 
+    function add() {
+        labels = addItem(labels, "Placeholder")
+        targets = addItem(targets, 50)
+        actuals = addItem(actuals, 50)
+    };
+
     function removeItem(arr, index) {
         const copy = [...arr];
         copy.splice(index, 1)
+        return copy
+    }
+
+    function addItem(arr, item) {
+        const copy = [...arr];
+        copy.push(item)
         return copy
     }
 </script>
@@ -85,7 +102,7 @@
                     </div>
                 </div>
             {/each}
-            <button class="btn btn-outline-primary">Add</button>
+            <button on:click={add} class="btn btn-outline-primary">Add</button>
         </form>
     </div>
     <div class="col">
